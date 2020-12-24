@@ -1,0 +1,29 @@
+##code_ref: https://blog.csdn.net/u010159842/article/details/52708906
+from numpy import *
+from sklearn import datasets
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt  
+
+def PCA(data,k = 2):
+    data_col_mean = mean(data,0)  ##对每一列求平均值
+    data = data-data_col_mean  ##每一列减去其平均值,进行中心化
+    covm = dot(data.T,data)
+    vals,vecs=linalg.eig(covm)##利用numpy中寻找特征值和特征向量的模块linalg中的eig()方法
+    sortvals = sort(vals)  ##对特征值进行从小到大的排序
+    perc = sum(sortvals[-k:])/sum(vals)  ##求得前d个特征值的总贡献率
+    princ = vecs[:,argsort(vals)[-k:]]  ##选取前d个特征值对应的特征向量作为主成分
+    return dot(data, princ),perc
+
+iris = datasets.load_iris()  ##选用python自带的数据集iris
+pca2,perc2 = PCA(iris.data,)  ##perc为2个主成分的贡献率
+kmeans2 = KMeans(n_clusters=3).fit(pca2)
+color = ['red','blue','green']
+target = ['setosa', 'versicolor', 'virginica']
+##数据降到二维作图
+for i in range(3):
+    pos = i == kmeans2.labels_
+    plt.scatter(pca2[pos,0], pca2[pos,1],c=color[i], label=target[i])
+    plt.legend()
+plt.title('2-Dimension')
+plt.xlabel('PC1')
+plt.ylabel('PC2')
