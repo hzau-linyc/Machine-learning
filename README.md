@@ -7,4 +7,4 @@ Iris也称鸢尾花卉数据集，是一类多重变量分析的数据集。数�
 ### Prerequisites    
 - python 3.8  
 ### Visualization:
-![image](https://github.com/hzau-linyc/image/blob/main/image/PCA_2_dimension.png)
+![image](https://github.com/hzau-linyc/image/blob/main/PCA_2_dimension.png)
