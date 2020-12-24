@@ -6,3 +6,5 @@ Iris也称鸢尾花卉数据集，是一类多重变量分析的数据集。数�
 通过Python的sklearn库来实现鸢尾花数据进行降维，数据本身是4维的降维后变成2维，最后在二维平面中画出样本点的分布。   
 ### Prerequisites    
 - python 3.8  
+### Visualization:
+![PCA](D:\bioinformatics-main/PCA_2_dimension)
